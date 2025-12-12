@@ -13,9 +13,9 @@ export default function AnswerOption({ text, isSelected, onClick }: AnswerOption
   return (
     <motion.button
       onClick={onClick}
-      className={`w-[896px] h-[90px] rounded-[15px] border flex items-center justify-center transition-all duration-200 ${isSelected
-          ? 'border-[#3CABDA] text-[#15313D] font-bold shadow-md'
-          : 'bg-white border-[#E0F2F7] text-[#15313D] font-medium hover:border-[#BAE6FD] hover:bg-gray-50'
+      className={`w-[897px] h-[78px] rounded-[15px] border flex items-center justify-center transition-all duration-200 ${isSelected
+        ? 'border-[#3CABDA] text-[#15313D] font-bold shadow-md'
+        : 'bg-white border-[#E0F2F7] text-[#15313D] font-medium hover:border-[#BAE6FD] hover:bg-gray-50'
         }`}
       style={{
         background: isSelected

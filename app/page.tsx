@@ -9,7 +9,6 @@ import NavigationArrows from '@/components/NavigationArrows';
 import ProgressBar from '@/components/ProgressBar';
 import DecorativeElements from '@/components/DecorativeElements';
 import FinalResults from '@/components/FinalResults';
-import CatPaw from '@/components/CatPaw';
 import SpeechBubble from '@/components/SpeechBubble';
 
 interface QuizQuestion {
@@ -34,14 +33,14 @@ const quizQuestions: QuizQuestion[] = [
   },
   {
     id: 3,
-    question: 'Which animal is known as the king of the jungle?',
-    options: ['Elephant', 'Lion', 'Tiger'],
+    question: 'What color are bananas?',
+    options: ['Blue', 'Yellow', 'Red'],
     correctAnswer: 1,
   },
   {
-    id: 4,
-    question: 'What color do you get when you mix red and blue?',
-    options: ['Green', 'Purple', 'Orange'],
+    id: 3,
+    question: 'How many stars are in the sky?',
+    options: ['Two', 'Infinite', 'One Hundred'],
     correctAnswer: 1,
   },
 ];
@@ -98,7 +97,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center relative overflow-visible" style={{ minWidth: '1920px', minHeight: '1080px' }}>
+    <div className="relative overflow-hidden mx-auto bg-white" style={{ width: '1920px', height: '1080px' }}>
       {/* Background Gradient */}
       <div
         className="absolute inset-0"
@@ -108,18 +107,47 @@ export default function Home() {
         }}
       ></div>
 
-      {/* Decorative Elements - First Page Only */}
+      {/* Decorative Elements - Best of Luck Image */}
+      {currentQuestionIndex === 0 && (
+        <motion.img
+          src="/images/best of luck.png"
+          alt="Best of Luck"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="absolute"
+          style={{
+            width: '300px',
+            height: '120px',
+            top: '725px',
+            left: '30.09px',
+
+            zIndex: 20
+          }}
+        />
+      )}
+
+      {/* Decorative Elements - Cat Paw */}
       <AnimatePresence>
         {currentQuestionIndex === 0 && (
-          <>
-            <CatPaw key="cat-paw" />
-            <SpeechBubble key="speech-bubble" />
-          </>
+          <img
+            src="/images/cat-paw.gif"
+            alt="Cat Paw"
+            style={{
+              width: '173.45px',
+              height: '173.45px',
+              position: 'absolute',
+              top: '794.55px',
+              left: '240.55px',
+              opacity: 1,
+              zIndex: 20
+            }}
+          />
         )}
       </AnimatePresence>
 
       {/* Main Content - Positioned */}
-      <div className="absolute overflow-visible" style={{ top: '80px', left: '148px', zIndex: 10 }}>
+      <div className="absolute overflow-visible" style={{ top: '80px', left: '147.5px', zIndex: 10 }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={currentQuestionIndex}
@@ -132,48 +160,82 @@ export default function Home() {
               {/* Header Section */}
               <div className="pt-[60px] px-[120px] flex flex-col items-center">
                 <h1
-                  className="text-center font-serif-display italic text-[100px] leading-[100px] tracking-tight mb-2"
-                  style={{ fontFamily: 'DM Serif Display, serif' }}
+                  className="text-center font-serif-display italic tracking-tight mb-2 flex items-center justify-center"
+                  style={{
+                    position: 'absolute',
+                    width: '919px',
+                    height: '102px',
+                    top: '126px',
+                    left: '353px',
+                    fontFamily: 'DM Serif Display, serif',
+                    fontWeight: 400,
+                    fontStyle: 'italic',
+                    fontSize: '90px',
+                    lineHeight: '24px',
+                    letterSpacing: '-4px',
+                    background: 'linear-gradient(90deg, #15313D 0%, #3CABDA 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    color: 'transparent',
+                    zIndex: 10
+                  }}
                 >
-                  <span className="text-[#1A5C7A]">Test Your Knowledge</span>
+                  Test Your Knowledge
                 </h1>
-                <div className="bg-white rounded-full px-8 py-2 mb-8 shadow-sm">
-                  <p className="text-center text-[#15313D] text-lg font-medium">
+                <div
+                  className="bg-white rounded-[8px] flex items-center justify-center shadow-sm"
+                  style={{
+                    position: 'absolute',
+                    width: '422px',
+                    height: '45px',
+                    top: '232px',
+                    left: '601px',
+                    padding: '10px 31px',
+                    zIndex: 10
+                  }}
+                >
+                  <p className="text-center text-[#15313D] text-lg font-medium whitespace-nowrap">
                     Answer all questions to see your results
                   </p>
                 </div>
-                <ProgressBar
-                  current={currentQuestionIndex + 1}
-                  total={quizQuestions.length}
-                />
+                <div style={{ position: 'absolute', top: '298px', left: '323px', width: '896px', zIndex: 10 }}>
+                  <ProgressBar
+                    current={currentQuestionIndex + 1}
+                    total={quizQuestions.length}
+                  />
+                </div>
               </div>
 
               {/* Question and Answers Section */}
-              <div className="flex flex-col items-center mt-12">
+              <div style={{ position: 'absolute', top: '351px', left: '323px', width: '896px', zIndex: 10 }}>
                 <Question
                   questionNumber={currentQuestion.id}
                   questionText={currentQuestion.question}
                 />
-
-                <div className="mt-6 space-y-4 w-full flex flex-col items-center">
-                  {currentQuestion.options.map((option, index) => (
-                    <AnswerOption
-                      key={index}
-                      text={option}
-                      isSelected={selectedAnswer === index}
-                      onClick={() => handleAnswerSelect(index)}
-                    />
-                  ))}
-                </div>
               </div>
 
-              {/* Navigation */}
-              <NavigationArrows
-                onPrevious={handlePrevious}
-                onNext={handleNext}
-                canGoPrevious={currentQuestionIndex > 0}
-                canGoNext={true}
-              />
+              <div
+                className="flex flex-col gap-[14px] absolute"
+                style={{
+                  top: '443px',
+                  left: '323px',
+                  width: '897px',
+                  height: '262px'
+                }}
+              >
+                {currentQuestion.options.map((option, index) => (
+                  <AnswerOption
+                    key={index}
+                    text={option}
+                    isSelected={selectedAnswer === index}
+                    onClick={() => handleAnswerSelect(index)}
+                  />
+                ))}
+              </div>
+
+
+
 
               {/* Decorative Elements */}
               <DecorativeElements />
@@ -181,6 +243,16 @@ export default function Home() {
           </motion.div>
         </AnimatePresence>
       </div>
-    </div>
+
+      {/* Navigation - Positioned Absolutely on Page */}
+      <div style={{ position: 'absolute', top: '855px', left: '1292px', width: '116px', height: '50px', zIndex: 30 }}>
+        <NavigationArrows
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          canGoPrevious={currentQuestionIndex > 0}
+          canGoNext={true}
+        />
+      </div>
+    </div >
   );
 }

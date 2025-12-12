@@ -12,7 +12,7 @@ export default function ProgressBar({ current, total }: ProgressBarProps) {
   const progress = (current / total) * 100;
 
   return (
-    <div className="flex items-center justify-center mt-8 gap-6">
+    <div className="flex items-center justify-center gap-6">
       {Array.from({ length: total }).map((_, index) => (
         <div
           key={index}

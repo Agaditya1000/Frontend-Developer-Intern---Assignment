@@ -14,12 +14,12 @@ export default function Question({ questionNumber, questionText }: QuestionProps
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="w-[896px] h-[90px] rounded-[15px] flex items-center justify-center border border-[#BAE6FD]"
+      className="w-[896px] h-[78px] rounded-[10px] flex items-center justify-center gap-[10px] border border-[#BAE6FD] px-[277px] py-[24px]"
       style={{
-        background: 'linear-gradient(180deg, rgba(169, 237, 255, 0.45) 0%, rgba(169, 237, 255, 0.1) 100%)',
+        background: 'linear-gradient(89.72deg, #C6E9F7 0.09%, #E5F8FF 99.91%)',
       }}
     >
-      <p className="text-[#15313D] text-xl font-bold text-center">
+      <p className="text-[#15313D] text-xl font-bold text-center whitespace-nowrap">
         {questionNumber}. {questionText}
       </p>
     </motion.div>
