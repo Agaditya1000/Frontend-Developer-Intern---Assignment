@@ -2,6 +2,8 @@
 
 This is a modern, interactive Quiz Application built as part of the Frontend Developer Intern assignment. It features a polished UI with smooth animations and a responsive design.
 
+**🔗 Live Demo:** [https://weddingcompany1.netlify.app/](https://weddingcompany1.netlify.app/)
+
 ## 🛠 Tech Stack Used
 
 This project is built using the following technologies:
